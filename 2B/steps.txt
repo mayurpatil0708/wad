@@ -1,0 +1,52 @@
+﻿
+Assignment: Dockerized Node.js Script (Assignment-2b)
+
+Step 1: Create a Folder
+Create a new folder named 'wadpartb' (folder names should be lowercase).
+
+Step 2: Create 'main.js' File
+Inside the 'wadpartb' folder, create a file named 'main.js' and add the following code:
+
+--------------------------------------------------
+console.log("Name: Your Name");
+console.log("Class: TE");
+console.log("Subject: LP-II Web Application Development");
+console.log("We are implementing Assignment-2b");
+--------------------------------------------------
+
+Step 3: Create a Dockerfile
+In the same folder, create a file named 'Dockerfile' (with no extension) and add the following content:
+
+--------------------------------------------------
+FROM node:alpine
+
+WORKDIR /app
+
+COPY . .
+
+CMD ["node", "main.js"]
+--------------------------------------------------
+
+Step 4: Test the Script (Optional)
+Before using Docker, you can test the script by running:
+
+node main.js
+
+Step 5: Build the Docker Image
+Open your terminal, navigate to the 'wadpartb' folder, and run:
+
+docker build -t wadpartb .
+
+This command builds the Docker image and tags it as 'wadpartb'.
+
+Step 6: Run the Docker Container
+Once the image is built, run the container using:
+
+docker run wadpartb
+
+You should see the output of the 'main.js' file printed in the terminal.
+
+Step 7: Verify Docker Images (Optional)
+To see the list of Docker images on your system:
+
+docker images

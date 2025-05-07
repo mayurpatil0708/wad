@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src=
+    "https://code.jquery.com/jquery-3.6.0.min.js">
+        </script>
+    <title>Document</title>
+</head>
+<body>
+    <form id="registrationForm">
+        <input type="text" id="name" placeholder="Name" required><br><br>
+        <input type="email" id="email" placeholder="Email" required><br><br>
+        <button type="submit">Register</button>
+      </form>
+      <ul id="userList"></ul>
+</body>
+<script>
+    function fakeAjaxPost(url, data, callback) {
+        let users = JSON.parse(localStorage.getItem(url)) || [];
+        users.push(data);
+        localStorage.setItem(url, JSON.stringify(users));
+        if (callback) callback({ status: 'success', data: data });
+      }
+  
+      $('#registrationForm').on('submit', function (e) {
+        e.preventDefault();
+  
+        const userData = {
+          name: $('#name').val(),
+          email: $('#email').val()
+        };
+        console.log(userData);
+        fakeAjaxPost('users', userData, function (res) {
+          alert('User registered!');
+          $('#registrationForm')[0].reset();
+        });
+      });
+      const users = JSON.parse(localStorage.getItem('users')) || [];
+
+    const userList = document.getElementById('userList');
+
+    users.forEach(user => {
+      const li = document.createElement('li');
+      li.textContent = `${user.name} (${user.email})`;
+      userList.appendChild(li);
+    });
+</script>
+</html>

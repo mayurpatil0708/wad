@@ -1,0 +1,5 @@
+﻿git init 
+git add .
+git commit -m "Commit message"
+git remote add origin "repository link"
+git push -u origin main/branch-name
